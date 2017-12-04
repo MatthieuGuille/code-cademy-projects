@@ -84,7 +84,7 @@ function getOrCreateUser(url, request) {
     };
     database.users[username] = user;
 
-    response.body = {user: user};
+    response.body = { user: user };
     response.status = 201;
   } else {
     response.status = 400;
@@ -116,7 +116,7 @@ function getArticle(url, request) {
     article.comments = article.commentIds.map(
       commentId => database.comments[commentId]);
 
-    response.body = {article: article};
+    response.body = { article: article };
     response.status = 200;
   } else if (id) {
     response.status = 404;
@@ -146,7 +146,7 @@ function createArticle(url, request) {
     database.articles[article.id] = article;
     database.users[article.username].articleIds.push(article.id);
 
-    response.body = {article: article};
+    response.body = { article: article };
     response.status = 201;
   } else {
     response.status = 400;
@@ -169,7 +169,7 @@ function updateArticle(url, request) {
     savedArticle.title = requestArticle.title || savedArticle.title;
     savedArticle.url = requestArticle.url || savedArticle.url;
 
-    response.body = {article: savedArticle};
+    response.body = { article: savedArticle };
     response.status = 200;
   }
 
@@ -208,7 +208,7 @@ function upvoteArticle(url, request) {
   if (savedArticle && database.users[username]) {
     savedArticle = upvote(savedArticle, username);
 
-    response.body = {article: savedArticle};
+    response.body = { article: savedArticle };
     response.status = 200;
   } else {
     response.status = 400;
@@ -226,7 +226,7 @@ function downvoteArticle(url, request) {
   if (savedArticle && database.users[username]) {
     savedArticle = downvote(savedArticle, username);
 
-    response.body = {article: savedArticle};
+    response.body = { article: savedArticle };
     response.status = 200;
   } else {
     response.status = 400;
@@ -255,7 +255,7 @@ function createComment(url, request) {
     database.users[requestComment.username].commentIds.push(comment.id);
     database.articles[requestComment.articleId].commentIds.push(comment.id);
 
-    response.body = {comment: comment};
+    response.body = { comment: comment };
     response.status = 201;
   } else {
     response.status = 400;
@@ -277,7 +277,7 @@ function updateComment(url, request) {
   } else {
     savedComment.body = requestComment.body || savedComment.body
 
-    response.body = {comment: savedComment};
+    response.body = { comment: savedComment };
     response.status = 200;
   }
 
@@ -312,7 +312,7 @@ function upvoteComment(url, request) {
   if (savedComment && database.users[username]) {
     savedComment = upvote(savedComment, username);
 
-    response.body = {comment: savedComment};
+    response.body = { comment: savedComment };
     response.status = 200;
   } else {
     response.status = 400;
@@ -330,7 +330,7 @@ function downvoteComment(url, request) {
   if (savedComment && database.users[username]) {
     savedComment = downvote(savedComment, username);
 
-    response.body = {comment: savedComment};
+    response.body = { comment: savedComment };
     response.status = 200;
   } else {
     response.status = 400;
